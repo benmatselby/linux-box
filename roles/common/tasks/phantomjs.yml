@@ -1,0 +1,30 @@
+---
+- name: Install phantomjs packages
+  apt: name={{ item }} state=latest
+  become: yes
+  with_items:
+  - chrpath
+  - libssl-dev
+  - libxft-dev
+  - libfreetype6
+  - libfreetype6-dev
+  - libfontconfig1
+  - libfontconfig1-dev
+
+- name: Download phantomjs
+  get_url:
+    url=https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-{{ phantomjs_version }}-linux-x86_64.tar.bz2
+    dest=/home/{{ ansible_env.USER }}/Downloads/phantomjs-{{ phantomjs_version }}-linux-x86_64.tar.bz2
+
+- name: Unpack phantomjs
+  unarchive:
+    src=/home/{{ ansible_env.USER }}/Downloads/phantomjs-{{ phantomjs_version }}-linux-x86_64.tar.bz2
+    dest=/home/{{ ansible_env.USER }}/apps
+    creates=/home/{{ ansible_env.USER }}/apps/phantomjs-{{ phantomjs_version }}-linux-x86_64
+
+- name: Create phantomjs symbolic link
+  file:
+    src=/home/{{ ansible_env.USER }}/apps/phantomjs-{{ phantomjs_version }}-linux-x86_64/bin/phantomjs
+    dest=/usr/local/bin/phantomjs
+    state=link
+  become: yes

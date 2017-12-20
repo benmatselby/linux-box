@@ -1,0 +1,16 @@
+---
+- name: Add Virtualbox ppa repository
+  apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian {{ ubuntu_code_name }} contrib"
+  become: yes
+
+- name: Register Oracle public key
+  apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc
+  become: yes
+
+- name: Register Oracle public key
+  apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc
+  become: yes
+
+- name: Install Virtualbox
+  apt: name=virtualbox-{{ virtualbox_version }} state=latest
+  become: yes

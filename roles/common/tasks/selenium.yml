@@ -1,0 +1,19 @@
+---
+- name: Download selenium server jar
+  get_url:
+    url=http://selenium-release.storage.googleapis.com/{{ selenium_major_version }}/selenium-server-standalone-{{ selenium_major_version }}.{{ selenium_minor_version }}.jar
+    dest=/usr/local/bin/selenium-server-standalone-{{ selenium_major_version }}.{{ selenium_minor_version }}.jar
+  become: yes
+
+- name: Make selenium server jar executable
+  file:
+    path=/usr/local/bin/selenium-server-standalone-{{ selenium_major_version }}.{{ selenium_minor_version }}.jar
+    mode=0755
+  become: yes
+
+- name: Create selenium server symbolic link
+  file:
+    src=/usr/local/bin/selenium-server-standalone-{{ selenium_major_version }}.{{ selenium_minor_version }}.jar
+    dest=/usr/local/bin/selenium-server
+    state=link
+  become: yes

@@ -1,0 +1,10 @@
+---
+- include: core.yml
+- include: virtualbox.yml
+- include: vagrant.yml
+- include: composer.yml
+- include: nodejs.yml
+- include: mysql.yml
+- include: jmeter.yml
+- include: selenium.yml
+- include: phantomjs.yml

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=PhpStorm
+Icon=/home/{{ ansible_env.USER }}/apps/PhpStorm-{{ phpstorm_build }}/bin/phpstorm.png
+Exec=/home/{{ ansible_env.USER }}/apps/PhpStorm-{{ phpstorm_build }}/bin/phpstorm.sh

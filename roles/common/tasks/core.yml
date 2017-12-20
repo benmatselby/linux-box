@@ -1,0 +1,48 @@
+---
+- name: Update apt
+  apt: update_cache=yes
+  become: yes
+
+- name: Install system packages
+  apt: pkg=python-software-properties state=latest
+  become: yes
+
+- name: Add PHP 7 ppa repository
+  apt_repository: repo=ppa:ondrej/php
+  become: yes
+
+- name: Install core packages
+  apt: name={{ item }} state=latest
+  become: yes
+  with_items:
+    - build-essential
+    - vim
+    - curl
+    - git
+    - php7.1
+    - php7.1-curl
+    - php7.1-imap
+    - php7.1-gd
+    - php7.1-mcrypt
+    - php7.1-ldap
+    - php7.1-xml
+    - php7.1-soap
+    - php7.1-mbstring
+    - php7.1-bcmath
+    - php7.1-zip
+    - php-xdebug
+    - dkms
+    - mysql-client
+    - nfs-kernel-server
+    - chromium-browser
+
+- name: Create PHP log directory
+  file: dest=/var/log/php state=directory
+  become: yes
+
+- name: Copy php.ini file
+  copy: src=99-php.ini dest=/etc/php/7.1/cli/conf.d/ mode=0644
+  become: yes
+
+- name: Create apps directory
+  file: dest=/home/{{ ansible_env.USER }}/apps state=directory

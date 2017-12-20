@@ -1,0 +1,20 @@
+---
+- name: Download Node.js repository configuration package
+  get_url:
+    url=https://deb.nodesource.com/setup_{{ nodejs_version }}
+    dest=/home/{{ ansible_env.USER }}/Downloads/nodejs_{{ nodejs_version }}
+
+- name: Setup Node.js repository configuration
+  shell: bash /home/{{ ansible_env.USER }}/Downloads/nodejs_{{ nodejs_version }}
+  become: yes
+
+- name: Install Node.js
+  apt: name=nodejs state=latest
+  become: yes
+
+- name: Install Grunt
+  npm: 
+    name=grunt-cli 
+    global=yes
+    state=latest
+  become: yes

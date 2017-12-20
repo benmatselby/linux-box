@@ -1,0 +1,12 @@
+---
+- name: Download Vagrant installation package
+  get_url: 
+    url=https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb 
+    dest=/home/{{ ansible_env.USER }}/Downloads/vagrant_{{ vagrant_version }}.deb
+
+- name: Install Vagrant package
+  apt: deb=/home/{{ ansible_env.USER }}/Downloads/vagrant_{{ vagrant_version }}.deb
+  become: yes
+
+- name: Install Vagrant Hosts Updater plugin
+  shell: vagrant plugin install vagrant-hostsupdater

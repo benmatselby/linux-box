@@ -1,0 +1,8 @@
+{
+  "require": {
+    "phpunit/phpunit": "*",
+    "phpmd/phpmd": "*",
+    "squizlabs/php_codesniffer": "*",
+    "phploc/phploc": "*"
+  }
+}

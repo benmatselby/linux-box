@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=JMeter
+Exec=/home/{{ ansible_env.USER }}/apps/apache-jmeter-{{ jmeter_version }}/bin/jmeter

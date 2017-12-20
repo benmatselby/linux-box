@@ -1,0 +1,30 @@
+---
+- name: Download JMeter installation package
+  get_url:
+    url=https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-{{ jmeter_version }}.tgz
+    dest=/home/{{ ansible_env.USER }}/Downloads/apache-jmeter-{{ jmeter_version }}.tgz
+
+- name: Unpack JMeter
+  unarchive:
+    src=/home/{{ ansible_env.USER }}/Downloads/apache-jmeter-{{ jmeter_version }}.tgz
+    dest=/home/{{ ansible_env.USER }}/apps
+    creates=/home/{{ ansible_env.USER }}/apps/apache-jmeter-{{ jmeter_version }}
+
+- name: Download JMeter plugins
+  get_url:
+    url=http://jmeter-plugins.org/downloads/file/{{ item.name }}-{{ item.version }}.zip
+    dest=/home/{{ ansible_env.USER }}/Downloads/{{ item.name }}-{{ item.version }}.zip
+  with_items: "{{ jmeter_plugins }}"
+
+- name: Unpack JMeter plugins
+  unarchive:
+    src=/home/{{ ansible_env.USER }}/Downloads/{{ item.name }}-{{ item.version }}.zip
+    dest=/home/{{ ansible_env.USER }}/apps/apache-jmeter-{{ jmeter_version }}
+    creates=/home/{{ ansible_env.USER }}/apps/apache-jmeter-{{ jmeter_version }}/lib/ext/{{ item.name }}.jar
+  with_items: "{{ jmeter_plugins }}"
+
+- name: Setup JMeter in launcher
+  template:
+    src=jmeter.desktop
+    dest=/usr/share/applications/jmeter.desktop
+  become: yes

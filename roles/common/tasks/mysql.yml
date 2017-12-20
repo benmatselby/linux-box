@@ -1,0 +1,9 @@
+---
+- name: Download MySQL Workbench installation package
+  get_url:
+    url=https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-{{ mysql_workbench_version }}-1ubuntu16.10-amd64.deb
+    dest=/home/{{ ansible_env.USER }}/Downloads/mysql-workbench-{{ mysql_workbench_version }}.deb
+
+- name: Install MySQL Workbench package
+  apt: deb=/home/{{ ansible_env.USER }}/Downloads/mysql-workbench-{{ mysql_workbench_version }}.deb
+  become: yes
