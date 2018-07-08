@@ -1,0 +1,7 @@
+---
+nodejs_version: "10.x"
+
+npm_packages:
+  - underscore-cli
+  - less
+  - grunt-cli

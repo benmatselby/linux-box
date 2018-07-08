@@ -8,20 +8,6 @@
 - name: Create composer directory
   file: dest=/home/{{ ansible_env.USER }}/.composer state=directory
 
-- name: Setup composer.json
-  template:
-    src=composer.json
-    dest=/home/{{ ansible_env.USER }}/.composer/composer.json
-
 - name: Update composer
   shell: composer.phar selfupdate
   become: yes
-
-- name: Install composer packages
-  shell:
-    composer.phar global install
-    creates=/home/{{ ansible_env.USER }}/.composer/composer.lock
-
-- name: Update composer packages
-  shell:
-    composer.phar global update

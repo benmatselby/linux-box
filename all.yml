@@ -1,0 +1,8 @@
+- name: a playbook to setup an Ubuntu development machine
+  hosts: local
+  connection: local
+  roles:
+    - common
+    - php
+    - node
+    - mysql

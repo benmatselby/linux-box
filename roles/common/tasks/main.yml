@@ -1,10 +1,4 @@
 ---
-- include: core.yml
-- include: virtualbox.yml
-- include: vagrant.yml
-- include: composer.yml
-- include: nodejs.yml
-- include: mysql.yml
-- include: jmeter.yml
-- include: selenium.yml
-- include: phantomjs.yml
+- import_tasks: core.yml
+# - import_tasks: virtualbox.yml
+# - import_tasks: vagrant.yml

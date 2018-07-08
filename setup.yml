@@ -1,5 +1,0 @@
-- name: a playbook to setup an Ubuntu 16.10 64-bit development machine
-  hosts: local
-  connection: local
-  roles:
-    - common

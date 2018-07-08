@@ -1,0 +1,10 @@
+---
+- name: Update apt
+  apt: update_cache=yes
+  become: yes
+
+- name: Install client
+  apt: 
+    name=mysql-client
+    state=latest
+  become: yes

@@ -1,0 +1,3 @@
+---
+- import_tasks: php.yml
+- import_tasks: composer.yml

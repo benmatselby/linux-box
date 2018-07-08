@@ -11,10 +11,3 @@
 - name: Install Node.js
   apt: name=nodejs state=latest
   become: yes
-
-- name: Install Grunt
-  npm: 
-    name=grunt-cli 
-    global=yes
-    state=latest
-  become: yes

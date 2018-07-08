@@ -1,20 +1,18 @@
 ---
-ubuntu_code_name: "zesty"
-ubuntu_version: "17.04"
+ubuntu_code_name: "bionic"
+ubuntu_version: "18.04"
 
-virtualbox_version: "5.1"
+apt_packages:
+  - software-properties-common
+  - build-essential
+  - vim
+  - curl
+  - git
+  - dkms
+  - nfs-kernel-server
+  - chromium-browser
+  - openssh-server
 
-vagrant_version: "1.9.3"
+virtualbox_version: "5.2"
 
-nodejs_version: "8.x"
-
-selenium_major_version: "3.5"
-selenium_minor_version: "3"
-
-phantomjs_version: "2.1.1"
-
-mysql_workbench_version: "6.3.9"
-
-jmeter_version: "2.13"
-jmeter_plugins:
-  - {name: "JMeterPlugins-ExtrasLibs", version: "1.3.1"}
+vagrant_version: "2.1.2"
