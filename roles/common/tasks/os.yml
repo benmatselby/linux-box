@@ -9,6 +9,11 @@
     pkg: "{{ apt_packages }}"
     state: latest
 
+- name: Remove os package
+  apt:
+    pkg: "{{ remove_apt_packages }}"
+    state: absent
+
 - name: Remove useless packages from the cache
   apt:
     autoclean: yes

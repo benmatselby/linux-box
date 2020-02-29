@@ -3,3 +3,5 @@ apt_packages:
   - vim
   - curl
   - git
+
+remove_apt_packages:
