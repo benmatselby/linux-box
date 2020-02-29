@@ -1,13 +1,14 @@
 ---
 - name: Download Node.js repository configuration package
-  get_url:
-    url=https://deb.nodesource.com/setup_{{ nodejs_version }}
-    dest=/home/{{ ansible_env.USER }}/Downloads/nodejs_{{ nodejs_version }}
+  get_url: url=https://deb.nodesource.com/setup_{{ nodejs_version }}
+    dest=/tmp/nodejs_{{ nodejs_version }}
 
 - name: Setup Node.js repository configuration
-  shell: bash /home/{{ ansible_env.USER }}/Downloads/nodejs_{{ nodejs_version }}
+  shell: bash /tmp/nodejs_{{ nodejs_version }}
   become: yes
 
 - name: Install Node.js
-  apt: name=nodejs state=latest
+  apt:
+    pkg: nodejs
+    state: latest
   become: yes

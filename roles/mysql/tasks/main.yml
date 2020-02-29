@@ -4,7 +4,7 @@
   become: yes
 
 - name: Install client
-  apt: 
-    name=mysql-client
-    state=latest
+  apt:
+    pkg: mysql-client
+    state: latest
   become: yes

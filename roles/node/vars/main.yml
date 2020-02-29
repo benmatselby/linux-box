@@ -1,7 +1,5 @@
 ---
-nodejs_version: "10.x"
+nodejs_version: "13.x"
 
 npm_packages:
-  - underscore-cli
-  - less
-  - grunt-cli
+  - http-server
