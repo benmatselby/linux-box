@@ -1,0 +1,4 @@
+- name: a playbook to setup raspberry pi machines
+  hosts: raspberry
+  roles:
+    - common

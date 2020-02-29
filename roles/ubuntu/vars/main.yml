@@ -1,0 +1,15 @@
+---
+ubuntu_code_name: "bionic"
+ubuntu_version: "18.04"
+
+apt_packages:
+  - software-properties-common
+  - build-essential
+  - dkms
+  - nfs-kernel-server
+  - chromium-browser
+  - openssh-server
+
+virtualbox_version: "5.2"
+
+vagrant_version: "2.1.2"

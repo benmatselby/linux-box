@@ -1,47 +1,30 @@
-# Ansible Playbook for Development Machine
+# Ansible playbooks
 
-Contains the Ansible configuration to install all the required packages and software for a development machine on the latest Ubuntu 64-bit.
+This repo contains [Ansible](https://docs.ansible.com) playbooks for both Ubuntu, and Raspberry Pis.
 
 ## Packages Installed
 
-The Ansible configuration will install the following packages:
+The Ansible configuration will install the following packages, based on roles.
 
-**Common**
+- Common
+  - [Vim](<https://en.wikipedia.org/wiki/Vim_(text_editor)>)
+  - [cURL](https://curl.haxx.se/)
+- Ubuntu
+  - [Chromium Browser](https://www.chromium.org/Home)
+  - [VirtualBox](https://www.virtualbox.org/)
+  - [Vagrant](https://www.vagrantup.com/)
+- PHP
+  - [PHP](http://php.net/)
+  - [Composer](https://getcomposer.org/)
+- MySQL
+  - [MySQL Client](http://dev.mysql.com/doc/refman/5.7/en/mysql.html)
+- Node.js
+  - [Node.js](https://nodejs.org/en/)
 
-- [Vim](https://en.wikipedia.org/wiki/Vim_(text_editor))
-- [cURL](https://curl.haxx.se/)
-- [Chromium Browser](https://www.chromium.org/Home)
-- [VirtualBox](https://www.virtualbox.org/)
-- [Vagrant](https://www.vagrantup.com/)
+## Installation
 
-**PHP**
+You require these pre-requisites to make use of this repo
 
-- [PHP](http://php.net/)
-- [Composer](https://getcomposer.org/)
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
 
-**MySQL**
-
-- [MySQL Client](http://dev.mysql.com/doc/refman/5.7/en/mysql.html)
-
-**Node.js**
-
-- [Node.js](https://nodejs.org/en/)
-
-
-## Configuration
-
-Amend the `all.yml` file to setup the versions of the software to install.
-
-## Setup
-
-Install [Ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu)
-
-Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-
-Then run the following command to run the Ansible playbook to setup the rest:
-
-```
-$ make provision
-```
-
-Re-run the command at regular intervals to update the software when new versions are included in the `roles/common/vars/main.yml` file.
+Then run `make` to see which playbooks to run. By re-running the `make provision-*` commands you will also update the software installed.

@@ -1,19 +1,26 @@
-REQUIRED_LINUX_DISTRO="Ubuntu"
-ACTUAL_LINUX_DISTRO="$(shell lsb_release -i -s)"
+HOST_PATH = ~/.benmatselby/ansible-hosts
 
-REQUIRED_UBUNTU_VERSION="$(shell grep ubuntu_version roles/common/vars/main.yml | cut -d '"' -f 2)"
-ACTUAL_UBUNTU_VERSION="$(shell lsb_release -r -s)"
+.PHONY: explain
+explain:
+	### Welcome
+	#
+	#    _   _   _   _   _   _   _
+	#   / \ / \ / \ / \ / \ / \ /
+	#  ( a | n | s | i | b | l | e )
+	#   \_/ \_/ \_/ \_/ \_/ \_/ \_/
+	#
+	#
+	### Installation
+	#
+	# $$ make all
+	#
+	### Targets
+	@cat Makefile* | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: check
-check:
-ifneq ($(REQUIRED_LINUX_DISTRO),$(ACTUAL_LINUX_DISTRO))
-	@echo "This can only run on $(REQUIRED_LINUX_DISTRO)"
-endif
+.PHONY: provision-ubuntu
+provision-ubuntu: ## Provision ubuntu machines
+	ansible-playbook ubuntu.yml -i $(HOST_PATH) --ask-become-pass
 
-ifneq ($(REQUIRED_UBUNTU_VERSION),$(ACTUAL_UBUNTU_VERSION))
-	@echo "This can only run on $(REQUIRED_UBUNTU_VERSION) of $(REQUIRED_LINUX_DISTRO)"
-endif
-
-.PHONY: provision
-provision: check
-	ansible-playbook all.yml -i HOSTS --ask-become-pass
+.PHONY: provision-raspberry
+provision-raspberry: ## Provision raspberry pi machines
+	ansible-playbook raspberry.yml -i $(HOST_PATH)
