@@ -1,21 +1,29 @@
 ---
 - name: Update apt
-  apt: update_cache=yes
+  apt:
+    update_cache: yes
   become: yes
 
 - name: Add PHP ppa repository
-  apt_repository: repo=ppa:ondrej/php
+  apt_repository:
+    repo: ppa:ondrej/php
   become: yes
 
 - name: Install core packages
-  apt: name={{ item }} state=latest
+  apt:
+    pkg: "{{php_packages}}"
+    state: latest
   become: yes
-  with_items: "{{php_packages}}"
 
 - name: Create PHP log directory
-  file: dest=/var/log/php state=directory
+  file:
+    dest: /var/log/php
+    state: directory
   become: yes
 
 - name: Copy php.ini file
-  copy: src=99-php.ini dest=/etc/php/{{php_version}}/cli/conf.d/ mode=0644
+  copy:
+    src: 99-php.ini
+    dest: /etc/php/{{php_version}}/cli/conf.d/
+    mode: 0644
   become: yes
